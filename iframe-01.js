@@ -4,6 +4,7 @@ var logging = (subject, message) => {
 };
 
 var check = () => {
+  console.info('check');
   document.hasStorageAccess().then(
     (result) => {
       logging("hasStorageAccess", result);
@@ -15,6 +16,7 @@ var check = () => {
 };
 
 var request = () => {
+  console.info('request');
   document.requestStorageAccess().then(
     function () {
       logging("requestStorageAccess", "granted");
