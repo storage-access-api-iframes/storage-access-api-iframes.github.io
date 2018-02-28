@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WebKit Storage Access API Test (iframe 1)</title>
+  </head>
+  <body>
+    <button onclick="request()">Request Storage Access</button>
+    <script>
+      const check = () => {
+        document.hasStorageAccess().then(
+          (result) => {
+            console.info("hasStorageAccess", result);
+          },
+          (error) => {
+            console.error("error on hasStorageAccess", error);
+          }
+        );
+      };
+
+      const request = () => {
+        document.requestStorageAccess().then(
+          function () {
+            console.info("requestStorageAccess", "granted");
+          },
+          function () {
+            console.info("requestStorageAccess", "rejected");
+          }
+        );
+      }
+
+      check();
+      request();
+    </script>
+  </body>
+</html>
