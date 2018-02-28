@@ -24,3 +24,6 @@ const request = () => {
     }
   );
 };
+
+check();
+request();
