@@ -7,13 +7,20 @@
   <body>
     <button onclick="request()">Request Storage Access</button>
     <script>
+      const logging = (subject, message) => {
+        window.parent.postMessage({
+          subject: subject,
+          message: message
+        }, '*')
+      };
+
       const check = () => {
         document.hasStorageAccess().then(
           (result) => {
-            console.info("hasStorageAccess", result);
+            logging("hasStorageAccess", result);
           },
           (error) => {
-            console.error("error on hasStorageAccess", error);
+            logging("error on hasStorageAccess", error);
           }
         );
       };
@@ -21,10 +28,10 @@
       const request = () => {
         document.requestStorageAccess().then(
           function () {
-            console.info("requestStorageAccess", "granted");
+            logging("requestStorageAccess", "granted");
           },
           function () {
-            console.info("requestStorageAccess", "rejected");
+            logging("requestStorageAccess", "rejected");
           }
         );
       }
