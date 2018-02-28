@@ -6,24 +6,24 @@
   </head>
   <body>
     <script>
-      var logging = (subject, message) => {
+      var logging = function (subject, message) {
         console.info(subject, message);
         window.parent.postMessage(subject + ' :: ' + message, "https://storage-access-api.github.io");
       };
 
-      var check = () => {
+      var check = function () {
         console.info('check');
         document.hasStorageAccess().then(
-          (result) => {
+          function (result) {
             logging("hasStorageAccess", result);
           },
-          (error) => {
+          function (error) {
             logging("error on hasStorageAccess", error);
           }
         );
       };
 
-      var request = () => {
+      var request = function () {
         console.info('request');
         document.requestStorageAccess().then(
           function () {
