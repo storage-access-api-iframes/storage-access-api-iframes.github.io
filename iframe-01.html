@@ -5,26 +5,25 @@
     <title>WebKit Storage Access API Test (iframe 1)</title>
   </head>
   <body>
+    <button onclick="request()">Request Storage Access</button>
     <script>
-      var logging = function (subject, message) {
+      const logging = (subject, message) => {
         console.info(subject, message);
         window.parent.postMessage(subject + ' :: ' + message, "https://storage-access-api.github.io");
       };
 
-      var check = function () {
-        console.info('check');
+      const check = () => {
         document.hasStorageAccess().then(
-          function (result) {
+          (result) => {
             logging("hasStorageAccess", result);
           },
-          function (error) {
+          (error) => {
             logging("error on hasStorageAccess", error);
           }
         );
       };
 
-      var request = function () {
-        console.info('request');
+      const request = () => {
         document.requestStorageAccess().then(
           function () {
             logging("requestStorageAccess", "granted");
@@ -38,6 +37,5 @@
       check();
       request();
     </script>
-    <button onclick="request()">Request Storage Access</button>
   </body>
 </html>
