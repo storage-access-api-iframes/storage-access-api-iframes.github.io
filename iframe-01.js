@@ -1,9 +1,9 @@
-const logging = (subject, message) => {
+var logging = (subject, message) => {
   console.info(subject, message);
   window.parent.postMessage(subject + ' :: ' + message, "https://storage-access-api.github.io");
 };
 
-const check = () => {
+var check = () => {
   document.hasStorageAccess().then(
     (result) => {
       logging("hasStorageAccess", result);
@@ -14,7 +14,7 @@ const check = () => {
   );
 };
 
-const request = () => {
+var request = () => {
   document.requestStorageAccess().then(
     function () {
       logging("requestStorageAccess", "granted");
